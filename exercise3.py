@@ -97,10 +97,8 @@ for token in es_doc:
             es_nouns_prop.append(token.head.head.lemma_)
     
 #Then we use the set() function to remove duplicates and we print our results
-print('Nouns that can denote informational content in English:', set(en_nouns_prop))
-print('\n')
-print('Nouns that can denote informational content in Spanish:', set(es_nouns_prop))
-print('\n')
+print('Nouns that can denote informational content in English:', set(en_nouns_prop), '\n')
+print('Nouns that can denote informational content in Spanish:', set(es_nouns_prop), '\n')
 
 '''CAPTURING NOUNS THAT CAN DENOTE EVENTUALITY'''
 #NOUNS DENOTING INFORMATIONAL CONTENT IN ENGLISH
@@ -156,20 +154,16 @@ for token in es_doc:
         es_nouns_ev.append(token.head.head.lemma_)
 
 #Finally, we use the set() function to remove duplicates and we print our results
-print('Nouns that can denote eventuality in English:', set(en_nouns_ev))
-print('\n')
-print('Nouns that can denote eventuality in Spanish:', set(es_nouns_ev))
-print('\n')
+print('Nouns that can denote eventuality in English:', set(en_nouns_ev), '\n')
+print('Nouns that can denote eventuality in Spanish:', set(es_nouns_ev), '\n')
 
 '''CAPTURING COINCIDENCES BETWEEN THE TWO CLASSES'''
 #We call the function for extracting the coincidences of the two categories in each language
 en_coincidences = intersection(en_nouns_prop, en_nouns_ev)
 es_coincidences = intersection(es_nouns_prop, es_nouns_ev)
 
-print('Intersections between these classes in English:', en_coincidences)
-print("\n")
-print('Intersections between these classes in Spanish:', es_coincidences)
-print('\n')
+print('Intersections between these classes in English:', en_coincidences, "\n")
+print('Intersections between these classes in Spanish:', es_coincidences, '\n')
 
 ########### MEASURING THE FREQUENCY OF THE COINCIDENCES IN EACH LIST ###########
 #We use the Counter function to measure the frequency of each token in each category of the two languages
@@ -217,11 +211,7 @@ sorted_es_coincidences_prop = sort_dic(es_coincidences_prop)
 sorted_es_coincidences_ev = sort_dic(es_coincidences_ev)
 
 #Lastly, we print our results sorted
-print('Frequency of intersections with informational content in English:', sorted_en_coincidences_prop)
-print("\n")
-print('Frequency of intersections with eventual content in English:', sorted_en_coincidences_ev)
-print("\n")
-print("\n")
-print('Frequency of intersections with informational content in Spanish:', sorted_es_coincidences_prop)
-print("\n")
+print('Frequency of intersections with informational content in English:', sorted_en_coincidences_prop, "\n")
+print('Frequency of intersections with eventual content in English:', sorted_en_coincidences_ev, "\n", "\n")
+print('Frequency of intersections with informational content in Spanish:', sorted_es_coincidences_prop, "\n")
 print('Frequency of intersections with eventual content in Spanish:', sorted_es_coincidences_ev)
