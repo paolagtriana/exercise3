@@ -212,6 +212,6 @@ sorted_es_coincidences_ev = sort_dic(es_coincidences_ev)
 
 #Lastly, we print our results sorted
 print('Frequency of intersections with informational content in English:', sorted_en_coincidences_prop, "\n")
-print('Frequency of intersections with eventual content in English:', sorted_en_coincidences_ev, "\n", "\n")
+print('Frequency of intersections with eventual content in English:', sorted_en_coincidences_ev, "\n")
 print('Frequency of intersections with informational content in Spanish:', sorted_es_coincidences_prop, "\n")
 print('Frequency of intersections with eventual content in Spanish:', sorted_es_coincidences_ev)
