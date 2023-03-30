@@ -27,7 +27,7 @@ es_doc = es_nlp(es_corpus)
 def extract_nouns_prop(doc, list_words):
     nouns_prop = []
     for token in doc:
-        #Condition for common nouns that are modified by a propositional predicates
+        #Condition for common nouns that are modified by a propositional predicate
         if token.dep_ == "amod" and token.tag_=="ADJ" and token.lemma_ in list_words and token.head.pos_ == "NOUN":
             nouns_prop.append(token.head.lemma_)
     return nouns_prop
@@ -36,7 +36,7 @@ def extract_nouns_prop(doc, list_words):
 def extract_nouns_ev(doc, list_adjs, list_verbs):
     nouns_ev = []
     for token in doc:
-        #Condition for common nouns that are modified by a eventive predicate
+        #Condition for common nouns that are modified by an eventive predicate
         if token.dep_ == "amod" and token.tag_=="ADJ" and token.lemma_ in list_adjs and token.head.pos_ == "NOUN":
             nouns_ev.append(token.head.lemma_)
         #Condition for common nouns that are subjects of a verb denoting eventuality
@@ -165,7 +165,7 @@ es_coincidences = intersection(es_nouns_prop, es_nouns_ev)
 print('Intersections between these classes in English:', en_coincidences, "\n")
 print('Intersections between these classes in Spanish:', es_coincidences, '\n')
 
-########### MEASURING THE FREQUENCY OF THE COINCIDENCES IN EACH LIST ###########
+'''MEASURING THE FREQUENCY OF THE COINCIDENCES IN EACH LIST'''
 #We use the Counter function to measure the frequency of each token in each category of the two languages
 en_freq_prop = Counter(en_nouns_prop)
 en_freq_ev = Counter(en_nouns_ev)
