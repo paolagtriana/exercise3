@@ -10,20 +10,17 @@ en_corpus_path = '/Users/paola/Desktop/exercise 3/corpus/en_corpus.txt'
 
 es_corpus_path = '/Users/paola/Desktop/exercise 3/corpus/es_corpus.txt'
 
-#We open the dataset files and assign them to a new variable
-with open(en_corpus_path, 'r') as en_file:
-  en_corpus = en_file.read().replace('\n', ' ')
-
-with open(es_corpus_path, 'r') as es_file:
-  es_corpus = es_file.read().replace('\n', ' ')
-
-#We apply the SpaCy model to our datasets and set the max length to a quantity higher than the tokens of each corpus
+#We open the dataset files, apply the SpaCy model and set the default max length to a higher quantity
 en_nlp = spacy.load('en_core_web_sm')
-en_nlp.max_length = 5000000
+with open(en_corpus_path, 'r') as en_file:
+    en_corpus = en_file.read().replace('\n', ' ')
+en_nlp.max_length = len(en_corpus) + 100
 en_doc = en_nlp(en_corpus)
 
 es_nlp = spacy.load('es_core_news_sm')
-es_nlp.max_length = 5000000
+with open(es_corpus_path, 'r') as es_file:
+  es_corpus = es_file.read().replace('\n', ' ')
+es_nlp.max_length = len(es_corpus) + 100
 es_doc = es_nlp(es_corpus)
 
 ########### DEFINING FUNCTIONS ###########
