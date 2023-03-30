@@ -6,9 +6,9 @@ from collections import Counter
 
 ########### LOADING AND PROCESSING THE DATA ###########
 #We define the file path of the datasets
-en_corpus_path = '/Users/paola/Desktop/exercise 3/corpus/en_corpus.txt'
+en_corpus_path = './corpus/en_corpus.txt'
 
-es_corpus_path = '/Users/paola/Desktop/exercise 3/corpus/es_corpus.txt'
+es_corpus_path = './corpus/es_corpus.txt'
 
 #We open the dataset files, apply the SpaCy model and set the default max length to a higher quantity
 en_nlp = spacy.load('en_core_web_sm')
