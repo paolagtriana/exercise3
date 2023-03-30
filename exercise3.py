@@ -7,7 +7,6 @@ from collections import Counter
 ########### LOADING AND PROCESSING THE DATA ###########
 #We define the file path of the datasets
 en_corpus_path = './corpus/en_corpus.txt'
-
 es_corpus_path = './corpus/es_corpus.txt'
 
 #We open the dataset files, apply the SpaCy model and set the default max length to a higher quantity
