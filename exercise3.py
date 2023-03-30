@@ -1,10 +1,10 @@
-#IMPORTING PACKAGES
+'''IMPORTING PACKAGES'''
 import spacy
 import en_core_web_sm
 import es_core_news_sm
 from collections import Counter
 
-########### LOADING AND PROCESSING THE DATA ###########
+''' LOADING AND PROCESSING THE DATA '''
 #We define the file path of the datasets
 en_corpus_path = './corpus/en_corpus.txt'
 es_corpus_path = './corpus/es_corpus.txt'
@@ -22,7 +22,7 @@ with open(es_corpus_path, 'r') as es_file:
 es_nlp.max_length = len(es_corpus) + 100
 es_doc = es_nlp(es_corpus)
 
-########### DEFINING FUNCTIONS ###########
+''' DEFINING FUNCTIONS '''
 #We define a function for extracting a list of nouns that could denote propositional content
 def extract_nouns_prop(doc, list_words):
     nouns_prop = []
@@ -56,8 +56,8 @@ def sort_dic(dictionary):
     
     return(sorted_dict)
 
-########### CAPTURING NOUNS THAT CAN DENOTE INFORMATIONAL CONTENT ###########
-############ English ###########
+''' CAPTURING NOUNS THAT CAN DENOTE INFORMATIONAL CONTENT '''
+#NOUNS DENOTING INFORMATIONAL CONTENT IN ENGLISH
 #Firstly, we create a handmade list of adjectives denoting informational content
 en_propositional_predicates = ["true", "false", "factual", "misleading", "deceptive",
                                "fallacious", "deceitful", "ambiguous", "spurious",
@@ -78,7 +78,7 @@ for token in en_doc:
     if token.head.dep_ == "acl" and token.tag_ == "NOUN" and token.dep_ == "nsubj" and token.head.head.pos_ == "NOUN":
         en_nouns_prop.append(token.head.head.lemma_)
 
-############ Spanish ###########
+#NOUNS DENOTING INFORMATIONAL CONTENT IN SPANISH
 #We repeat the steps that we have previously followed
 es_propositional_predicates = ['verdadero', 'falso', 'plausibles', 'implausible', 'cierto', 'verídico',
                                'veraz',  'probado', 'fáctico', 'literal', 'espurio', 'falaz', 'ambiguo' ]
@@ -102,8 +102,8 @@ print('\n')
 print('Nouns that can denote informational content in Spanish:', set(es_nouns_prop))
 print('\n')
 
-########### CAPTURING NOUNS THAT CAN DENOTE EVENTUALITY ###########
-############ English ###########
+'''CAPTURING NOUNS THAT CAN DENOTE EVENTUALITY'''
+#NOUNS DENOTING INFORMATIONAL CONTENT IN ENGLISH
 #Firstly, we create a handmade list of adjectives, verbs, and nouns denoting eventive content
 en_eventive_predicates = ["enduring", "lasting", "long-lived", "long-running", "long-established",
                           "long-standing", "lifelong", "permanent", "abiding", "durable", "everlasting",
@@ -133,7 +133,7 @@ for token in en_doc:
     if token.pos_ == "NOUN" and token.dep_ == 'compound' and token.lemma_ in en_eventive_pp and token.head.pos_ == "NOUN":
         en_nouns_ev.append(token.head.lemma_)
 
-########### Spanish ###########
+#NOUNS DENOTING INFORMATIONAL CONTENT IN SPANISH
 #We repeat the steps that we have previously followed
 es_eventive_predicates = ["duradero", "perdurable", "eterno", "inacabable", "indefinido", "inextinguible",
                           "inmemorial", "inmortal", "perenne", "persistente", "prolongado", "sempiterno",
@@ -161,7 +161,7 @@ print('\n')
 print('Nouns that can denote eventuality in Spanish:', set(es_nouns_ev))
 print('\n')
 
-########### CAPTURING COINCIDENCES BETWEEN THE TWO CLASSES ###########
+'''CAPTURING COINCIDENCES BETWEEN THE TWO CLASSES'''
 #We call the function for extracting the coincidences of the two categories in each language
 en_coincidences = intersection(en_nouns_prop, en_nouns_ev)
 es_coincidences = intersection(es_nouns_prop, es_nouns_ev)
