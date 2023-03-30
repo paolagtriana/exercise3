@@ -124,10 +124,10 @@ for token in en_doc:
     #     for child in children:
     #       if child.pos_ == "NOUN" and child.dep_ == "nsubj":
     #         en_nouns_prop.append(child.lemma_)
-    #Condition for '5-minute break'
+    #Condition for eventive constructions modifying nouns as in '5-minute break'
     if token.pos_ == "NOUN" and token.dep_ == 'pobj' and token.lemma_ in en_eventive_pp and token.head.dep_ == 'prep' and token.head.head.pos_ == "NOUN":
         en_nouns_ev.append(token.head.head.lemma_)
-    #Condition for 'a break of 5 minutes'
+    ##Condition for eventive compounds modifying nouns as in 'a break of 5 minutes'
     if token.pos_ == "NOUN" and token.dep_ == 'compound' and token.lemma_ in en_eventive_pp and token.head.pos_ == "NOUN":
         en_nouns_ev.append(token.head.lemma_)
 
@@ -149,7 +149,7 @@ for token in es_doc:
     # for token in es_doc:
     #   if token.head.dep_ == "ROOT" and token.head.pos_ == "ADJ" and token.head.lemma_ in es_eventive_predicates and token.pos_ == "NOUN":
     #     es_nouns_prop.append(token.lemma_)
-    #Condition for 'un descanso de cinco minutos'
+    #Condition for eventive constructions modifying nouns such as in 'un descanso de cinco minutos'
     if token.tag_ == "NUM" and token.head.dep_ == "nmod" and token.head.lemma_ in es_eventive_pp and token.head.head.tag_ == "NOUN" and token.head.head.pos_ == "NOUN":
         es_nouns_ev.append(token.head.head.lemma_)
 
